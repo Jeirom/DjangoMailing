@@ -1,6 +1,6 @@
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
-from maiiling.models import Recipient, Mail, Mailling
+from mailling.models import Recipient, Mail, Mailling
 
 
 class HomeListView(ListView):

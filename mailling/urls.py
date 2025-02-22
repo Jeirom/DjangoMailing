@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from maiiling.views import HomeListView
+from mailling.views import HomeListView
 
 # from catalog.apps import CatalogConfig
 # from maiiling.views import (RecipientListView, RecipientDetailView, RecipientCreateView, RecipientUpdateView,
