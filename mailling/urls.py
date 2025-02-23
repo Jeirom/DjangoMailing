@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from mailling.views import HomeListView
+from mailling.views import HomeListView, SendMessagesHandmade
 
 # from catalog.apps import CatalogConfig
 # from maiiling.views import (RecipientListView, RecipientDetailView, RecipientCreateView, RecipientUpdateView,
@@ -13,6 +13,7 @@ app_name = 'mailling'
 
 urlpatterns = [
     path('', HomeListView.as_view(), name='home'),
+    path('sendhandmade/', SendMessagesHandmade.as_view(), name='send_handmade')
 
     # path('recipient/', RecipientListView.as_view(), name='recipient'),
     # path('recipient/<int:pk>/', RecipientDetailView.as_view(), name='recipient_detail'),

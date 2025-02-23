@@ -18,6 +18,9 @@ class Mail(models.Model):
     theme = models.CharField()
     body_mail = models.TextField()
 
+    def __str__(self):
+        return self.theme
+
 
 class Mailling(models.Model):
     """Рассылка"""

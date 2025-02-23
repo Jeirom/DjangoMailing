@@ -130,10 +130,10 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# AUTH_USER_MODEL = 'users.User'
+# AUTH_USER_MODEL = 'users.Users'
 
-LOGIN_REDIRECT_URL = '/catalog/'
-LOGOUT_REDIRECT_URL = '/catalog/'
+LOGIN_REDIRECT_URL = '/home/'
+LOGOUT_REDIRECT_URL = '/home/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
