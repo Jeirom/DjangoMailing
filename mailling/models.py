@@ -55,7 +55,7 @@ class TryRecipient(models.Model):
     time_try = models.DateField()
     status = (models.CharField
         (
-        shoices=STATUS_CHOICES)
+        choices=STATUS_CHOICES)
     )
     mail_response = models.TextField()
     recipient = models.ForeignKey(Recipient, on_delete=models.CASCADE)
