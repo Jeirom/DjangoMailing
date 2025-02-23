@@ -13,5 +13,5 @@ class StyleFormMixin:
 
 class GoMail(forms.ModelForm):
     class Meta:
-        mail = Mail
+        model = Mail
         fields = ['theme', 'body_mail']

@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView, FormView)
+from pyexpat.errors import messages
 
 from mailling.forms import GoMail
 from mailling.models import Recipient, Mail, Mailling
@@ -11,7 +12,7 @@ class SendMessagesHandmade(FormView):
     model = Mail
     template_name = 'send_messages_handmade.html'
     form_class = GoMail
-    success_url = reverse_lazy('home.html')
+    success_url = reverse_lazy('mailling:home')
 
     # def form_valid(self, form):
     #     # Сохраняем сообщение

@@ -13,7 +13,7 @@ app_name = 'mailling'
 
 urlpatterns = [
     path('', HomeListView.as_view(), name='home'),
-    path('sendhandmade/', SendMessagesHandmade.as_view(), name='send_handmade')
+    path('sendmessages/', SendMessagesHandmade.as_view(), name='send_handmade')
 
     # path('recipient/', RecipientListView.as_view(), name='recipient'),
     # path('recipient/<int:pk>/', RecipientDetailView.as_view(), name='recipient_detail'),

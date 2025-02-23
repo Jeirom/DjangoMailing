@@ -15,8 +15,8 @@ class Recipient(models.Model):
 
 class Mail(models.Model):
     """Модель сообщения"""
-    theme = models.CharField()
-    body_mail = models.TextField()
+    theme = models.CharField(verbose_name='Тема:')
+    body_mail = models.TextField(verbose_name='Сообщение:')
 
     def __str__(self):
         return self.theme
