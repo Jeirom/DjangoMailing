@@ -76,9 +76,10 @@ class HomeListView(ListView):
 #     model = Mailling
 #
 #
-# class MaillingDetailView(DetailView):
-#     model = Mailling
-#
+class MaillingDetailView(DetailView):
+    model = Mailling
+    template_name = 'mailling_detail.html'
+
 #
 # class MaillingListView(ListView):
 #     model = Mailling
