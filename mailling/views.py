@@ -1,11 +1,29 @@
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  UpdateView, FormView)
+                                  UpdateView, FormView, View)
 from pyexpat.errors import messages
 
-from mailling.forms import GoMail
-from mailling.models import Recipient, Mail, Mailling
+from mailling.forms import GoMail, RecipientForm, MailForm, MaillingForm
+from mailling.models import Recipient, Mail, Mailling, TryRecipient
 from django.core.mail import send_mail
+
+
+class MailingDetailView(DetailView):
+    model = Mailling
+    template_name = 'mailing_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['recipients'] = Recipient.objects.all()
+        context['mails'] = Mail.objects.all()
+        context['mailings'] = Mailling.objects.select_related('mail', 'recipient').all()
+        context['tryrecipients'] = TryRecipient.objects.all()
+        return context
+
+
+class RecipientListView(ListView):
+    template_name = 'create.html'
+    model = Mail
 
 
 class SendMessagesHandmade(FormView):
@@ -14,20 +32,21 @@ class SendMessagesHandmade(FormView):
     form_class = GoMail
     success_url = reverse_lazy('mailling:home')
 
-    # def form_valid(self, form):
-    #     # Сохраняем сообщение
-    #     message = form.save()
-    #     # Здесь можно добавить логику для отправки сообщения
-    #     # send_email(message.subject, message.body)
-    #     return super().form_valid(form)
-    #
-    # def form_invalid(self, form):
-    #     # Здесь можно добавить обработку невалидной формы, если необходимо
-    #     return super().form_invalid(form)
+    def form_valid(self, form):
+        # Сохраняем сообщение
+        message = form.save()
+        # Здесь можно добавить логику для отправки сообщения
+        # send_email(message.subject, message.body)
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        # Здесь можно добавить обработку невалидной формы, если необходимо
+        return super().form_invalid(form)
 
 
 class HomeListView(ListView):
     model = Mailling
+    context_object_name = "maillings"
     template_name = "home.html"
 
 
@@ -40,8 +59,11 @@ class HomeListView(ListView):
 #     model = Recipient
 #
 #
-# class RecipientCreateView(CreateView):
-#     model = Recipient
+class RecipientCreateView(CreateView):
+    model = Recipient
+    template_name = 'create_recipient.html'
+    form_class = RecipientForm
+    success_url = reverse_lazy('mailling:create')
 #
 #
 # class RecipientDeleteView(DeleteView):
@@ -60,8 +82,11 @@ class HomeListView(ListView):
 #     model = Mail
 #
 #
-# class MailCreateView(CreateView):
-#     model = Mail
+class MailCreateView(CreateView):
+    model = Mail
+    template_name = 'create_mail.html'
+    form_class = MailForm
+    success_url = reverse_lazy('mailling:create')
 #
 #
 # class MailUpdateView(UpdateView):
@@ -72,8 +97,11 @@ class HomeListView(ListView):
 #     model = Mail
 #
 #
-# class MaillingListView(ListView):
-#     model = Mailling
+class MaillingCreateView(CreateView):
+    model = Mailling
+    template_name = 'create_mailling.html'
+    form_class = MaillingForm
+    success_url = reverse_lazy('mailling:create')
 #
 #
 class MaillingDetailView(DetailView):
