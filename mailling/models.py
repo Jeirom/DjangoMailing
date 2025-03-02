@@ -1,5 +1,6 @@
 from django.db import models
 
+from users.models import Users
 
 
 class Recipient(models.Model):
@@ -8,12 +9,14 @@ class Recipient(models.Model):
                               help_text='Рассылка будет отправлена на указанный email.')
     full_name = models.CharField(max_length=50, verbose_name='Ф.И.О')
     comment = models.TextField(max_length=150, verbose_name='Комментарий', null=True, blank=True)
+    owner = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='mailings_recipient', verbose_name='Владелец', null=True, blank=True)
 
 
 class Mail(models.Model):
     """Модель сообщения"""
     theme = models.CharField(verbose_name='Тема письма', max_length=50)
     body_mail = models.TextField(verbose_name='Тело письма')
+    owner = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='mailings_mail', verbose_name='Владелец', null=True, blank=True)
 
     def __str__(self):
         return self.theme
@@ -36,6 +39,7 @@ class Mailling(models.Model):
     my_field = models.CharField(choices=STATUS_CHOICES, default=STATUS_NEW, verbose_name='Статус')
     mail = models.ForeignKey(Mail, on_delete=models.CASCADE, verbose_name='Сообщение')
     recipient = models.ManyToManyField(Recipient, verbose_name='Получатель')
+    owner = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='mailings', verbose_name='Владелец', null=True, blank=True )
 
 
 class TryRecipient(models.Model):

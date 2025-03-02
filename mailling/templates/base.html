@@ -17,14 +17,14 @@
 <!--        <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>-->
         <a class="p-2 btn btn-outline-primary" href="/mailling/create/">Рассылки</a>
 
-        <form method="post" action="/logout/" style="display: inline;">
+        <form method="post" action="/users/logout/" style="display: inline;">
             {% csrf_token %}
             <button type="submit" class="p-2 btn btn-outline-primary">Выйти
             </button>
         </form>
 
-        <a class="p-2 btn btn-outline-primary" href="/login/">Вход</a>
-        <a class="p-2 btn btn-outline-primary" href="/register/">Регистрация</a>
+        <a class="p-2 btn btn-outline-primary" href="/users/login/">Вход</a>
+        <a class="p-2 btn btn-outline-primary" href="/users/register/">Регистрация</a>
 
     </nav>
 </div>

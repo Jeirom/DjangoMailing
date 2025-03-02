@@ -11,6 +11,7 @@ django = "^5.1.6"
 flake8 = "^7.1.2"
 black = "^25.1.0"
 dotenv = "^0.9.9"
+logger = "^1.4"
 
 
 [build-system]
