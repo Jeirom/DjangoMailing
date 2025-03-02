@@ -70,5 +70,5 @@ class CustomLogoutView(LogoutView):
 
     def dispatch(self, request, *args, **kwargs):
         # Вызываем логирование при выходе
-        logger.info(f"{request.user.username} вышел из системы в {timezone.now()}")
+        logger.info(f"{request.users.email} вышел из системы в {timezone.now()}")
         return super().dispatch(request, *args, **kwargs)
