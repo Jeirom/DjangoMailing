@@ -1,7 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*$py.class
+*class java.lang.String
 
 # C extensions
 *.so
@@ -56,7 +56,7 @@ cover/
 *.pot
 
 # Django stuff:
-#*.log
+*.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -160,7 +160,3 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
-/client_base.xlsx
-news_prog/src/config.py
-database.ini
-db.sqlite3

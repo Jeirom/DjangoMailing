@@ -1,6 +1,5 @@
 import secrets
 from smtplib import SMTPSenderRefused
-import logger
 from django.contrib.auth import login
 from django.utils import timezone
 import logging
@@ -11,16 +10,15 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
-from users.models import Users
 from users.forms import UserRegisterForm
 from config.settings import EMAIL_HOST_USER
-
+from users.models import User
 
 logger = logging.getLogger(__name__)
 
 
 class UserCreateView(CreateView):
-    model = Users
+    model = User
     form_class = UserRegisterForm
     success_url = reverse_lazy('/users/login/')
     template_name = '../templates/register.html'
@@ -70,5 +68,5 @@ class CustomLogoutView(LogoutView):
 
     def dispatch(self, request, *args, **kwargs):
         # Вызываем логирование при выходе
-        logger.info(f"{request.user.username} вышел из системы в {timezone.now()}")
+        logger.info(f"{request.users.email} вышел из системы в {timezone.now()}")
         return super().dispatch(request, *args, **kwargs)

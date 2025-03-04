@@ -1,12 +1,12 @@
 from django.contrib.auth.forms import UserCreationForm
-from users.models import Users
-from mailling.forms import StyleFormMixin
+from users.models import User
+from mailing.forms import StyleFormMixin
 from django import forms
 
 
 class UserRegisterForm(StyleFormMixin, UserCreationForm):
     class Meta:
-        model = Users
+        model = User
         fields = ("email", "avatar", "phone", "country", "password1", "password2")
 
     # def create_password_fields(self, *args, **kwargs):
@@ -44,5 +44,5 @@ class UserRegisterForm(StyleFormMixin, UserCreationForm):
         })
         self.fields['password2'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Повторный ввод пароля'
+            'placeholder': 'Введите тот же пароль'
         })
